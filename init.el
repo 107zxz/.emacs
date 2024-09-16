@@ -19,7 +19,8 @@
 (use-package emacs
   :init
   (tool-bar-mode 0)
-  (menu-bar-mode 0))
+  (menu-bar-mode 0)
+  (scroll-bar-mode 0))
 
 (use-package package
   :config
