@@ -6,7 +6,7 @@
  '(custom-safe-themes
    '("5f128efd37c6a87cd4ad8e8b7f2afaba425425524a68133ac0efd87291d05874" default))
  '(package-selected-packages
-   '(company zig-mode magit parrot quelpa-use-package quelpa which-key doom-themes exec-path-from-shell orderless vertico xah-fly-keys)))
+   '(mvn eglot company zig-mode magit quelpa-use-package quelpa which-key doom-themes exec-path-from-shell orderless vertico xah-fly-keys)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -20,21 +20,15 @@
   :init
   (tool-bar-mode 0)
   (menu-bar-mode 0)
-  (scroll-bar-mode 0))
+  (scroll-bar-mode 0)
+  (setq inhibit-splash-screen t))
 
 (use-package package
   :config
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
-(use-package quelpa
+(use-package parrot
   :ensure t
-  :config
-  (quelpa '(quelpa-use-package
-	    :fetcher git
-	    :url "https://github.com/quelpa/quelpa-use-package.git"))
-  (require 'quelpa-use-package))
-
-(use-package parrot :quelpa (parrot :fetcher github :repo "107zxz/parrot" :files (:defaults "img"))
   :init
   (setq parrot-num-rotations nil)
   :config
@@ -46,6 +40,9 @@
 
 (use-package xah-fly-keys
   :ensure t
+  :init
+  (setq xah-fly-use-control-key nil
+	xah-fly-use-meta-key nil)
   :config
   (xah-fly-keys t)
   (define-key xah-fly-command-map (kbd "SPC / m") 'magit-status)
@@ -87,7 +84,10 @@
   :config
   (which-key-mode))
 
-
 ;;; Programming Languages
 (use-package zig-mode
+  :ensure t)
+
+;; Java
+(use-package mvn
   :ensure t)
